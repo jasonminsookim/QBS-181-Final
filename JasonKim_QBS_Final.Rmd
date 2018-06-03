@@ -21,38 +21,46 @@ library(gridExtra)
 library(SASxport)
 library(Hmisc)
 library(stringr)
+library(sqldf)
 ```
 
 
 ## Data Source
-The data was downloaded from the National Health and Nutrition Examination Survey from 2015-2016. In particular, this data set is the 'Weight History Questionnaire' 
+- The data was downloaded from the National Health and Nutrition Examination Survey from 2015-2016. In particular, this data set is the 'Weight History Questionnaire' 
 (https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Questionnaire&CycleBeginYear=2015)
 
-The questions were related to body weight, height, and methods of losing weight. 
+- The questions were related to body weight, height, and methods of losing weight.
 
-The eligible sample for the data was any person in the United States over the age of 16. The data was collected by trained interviewers using Computer Assisted Personal Interview (CAPI). 
-
-The dimensions matches that of a converted csv file, indicating the sasxport.get function worked well.
+- The eligible sample for the data was any person in the United States over the age of 16. The data was collected by trained interviewers using Computer Assisted Personal Interview (CAPI). 
 
 ```{r intro, echo = T, warning = F}
 # Read the xpt file using the SASxport library
 weight_df <- sasxport.get('/Users/jasonkim/QBS 181 Final/WHQ_I.XPT')
 
-# I removed the labels for the columns because they were lengthy and contained a lot of whitespace
+# I removed the labels for the columns because they were lengthy and contained a lot of whitespaces
 weight_df <- remove_labels(weight_df)
 head(weight_df)
 dim(weight_df)
+# There are 6327 rows of data and 37 columns
 ```
+
+- The dimensions matches that of a converted csv file, indicating the sasxport.get function worked well.
+
+## Abbreviations
+- TLW = ToLoseWeight
+
+- AC = AddedColumn
 
 ## Initial Observations
 
-There are many entries that are NaN for a wide variety of the survey questions. The column names are unclear without direct access to the data documentation. 
+- There are many entries that are NaN for a wide variety of the survey questions. The column names are unclear without direct access to the data documentation. 
 (https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/WHQ_I.htm)
 
 ## Renaming Columns
-TLW is short for ToLoseWeight
+- The columns are renamed to reflect the documentation listed above. Some of the column names are shortened. Additionally, camel case was used to shorten the string length for each column.
 
 ```{r renaming columns, echo=T}
+# Shows what the column names are before recoding
 colnames(weight_df)
 
 weight_df <- rename(weight_df, 
@@ -95,12 +103,15 @@ weight_df <- rename(weight_df,
                     AgeWhenWeightLossSurgery = whq200
 )
 
+# Shows the column names after they have been renamed
 colnames(weight_df)
 
+# Copies the data frame for future use
+# weight_df will be used to recode values using base R, while weight_df_dplyr will use dplyr
 weight_df_dplyr <- weight_df
 ```
 
-## Recoding Data Using Data Documentation (base R)
+## Recoding Data Using Source Documentation (base R)
 
 ```{r, echo = T}
 # CurrentSelfReportedHeight_inches
@@ -248,7 +259,8 @@ weight_df$AgeWhenWeightLossSurgery[weight_df$AgeWhenWeightLossSurgery == 99999] 
 
 ```
 
-## Recoding Data Using Data Documentation (dplyr: case_when)
+## Recoding Data Using Source Documentation (dplyr: case_when)
+Using this method makes the code look cleaner and easier to understand. 
 ```{r case_when, echo = T}
 # CurrentSelfReportedHeight_inches
 weight_df_dplyr %<>% mutate(CurrentSelfReportedHeight_inches = 
@@ -288,7 +300,7 @@ weight_df_dplyr %<>% mutate(WeightChangeIntentional =
                                         WeightChangeIntentional == 7 ~ "Refused",
                                         WeightChangeIntentional == 9 ~ "Don't Know",
                                         TRUE ~ as.character(WeightChangeIntentional)))
- # TriedToLoseWeightInPastYear
+# TriedToLoseWeightInPastYear
 weight_df_dplyr %<>% mutate(TriedToLoseWeightInPastYear = 
                               case_when(TriedToLoseWeightInPastYear == 1 ~ "Yes",
                                         TriedToLoseWeightInPastYear == 2 ~ "No",
@@ -435,23 +447,39 @@ weight_df_dplyr %<>% mutate(AgeWhenWeightLossSurgery =
 
 ## Exploratory Visuals for Current Weight and Height
 
-Transform the data to be normalized
-
-
 ```{r e_visuals, echo = T,warning = F}
 # Current Self Reported Weight Histogram
-CurrentSelfReportedWeight_hist <- ggplot(data = weight_df, aes(x = as.numeric(CurrentSelfReportedWeight_pounds))) + geom_histogram(color = 'darkblue', fill = 'white') + ggtitle("Current Self Reported Weight") + xlab("Weight - pounds")
+CurrentSelfReportedWeight_hist <- ggplot(data = weight_df, aes(x = as.numeric(CurrentSelfReportedWeight_pounds))) + 
+  geom_histogram(color = 'darkblue', fill = 'white', bins = 30) + 
+  ggtitle("Current Self Reported Weight") + xlab("Weight - pounds") +
+  aes(fill = AC_BMI_Classification)
 
 # Current Self Reported Height Histogram
-CurrentSelfReportedHeight_hist <- ggplot(data = weight_df, aes(x = as.numeric(CurrentSelfReportedHeight_inches))) + geom_histogram(color = 'darkblue', fill = 'white') + ggtitle("Current Self Reported Height") + xlab("Height - inches")
+CurrentSelfReportedHeight_hist <- ggplot(data = weight_df, aes(x = as.numeric(CurrentSelfReportedHeight_inches))) + 
+  geom_histogram(color = 'darkblue', fill = 'white', bins = 30) +
+  ggtitle("Current Self Reported Height") + xlab("Height - inches") +
+  aes(fill = AC_BMI_Classification)
 
 grid.arrange(CurrentSelfReportedWeight_hist, CurrentSelfReportedHeight_hist, ncol = 2)
 ```
-## Normalized Data from Above
+
+- The self reported weight histogram shows a distribution skewed to the right. That means that there are some outliers of people who far excede the mean weight. This skewed distribution does seem to reflect the United States because it one of the most obese (heaviest) nations in the world. 
+
+- The self reported height is not skewed to the right; however, there are some abnormally peaks in the histogram. This may be due to people rounding their height. This could be from people rounding their heights when they are unsure. One would expect the height to be normally distributed if the heights were measured by a scientist or doctor rather than a questionnaire 
+
+## (Quick Aside) Normalizing Skewed Data
+Oftentimes, skewed data is normalized for the purposes of modeling. To demonstrate, the weight data will be normalized via a log transformation
+```{r, warning=F}
+ggplot(data = weight_df, aes(x = log(as.numeric(CurrentSelfReportedWeight_pounds)))) + 
+  geom_histogram(color = 'darkblue', fill = 'white', bins = 30) + 
+  ggtitle("Current Self Reported Weight - Log Transformed") +
+  xlab("Log(Weight) - pounds")
+```
+
 
 ## Add Function to Calculate BMI
 
-```{r bmi, echo = T}
+```{r bmi, echo = T, warning = F}
 calc_BMI <- function(weight, height)
 {
   if(is.na(weight) | is.na(height))
@@ -467,35 +495,170 @@ calc_BMI <- function(weight, height)
     return(NaN)
 }
 
-weight_df$CurrentBMI <- mapply(calc_BMI, weight_df$CurrentSelfReportedWeight_pounds, weight_df$CurrentSelfReportedHeight_inches)
+weight_df$AC_CurrentBMI <- mapply(calc_BMI, weight_df$CurrentSelfReportedWeight_pounds, weight_df$CurrentSelfReportedHeight_inches)
 
-# Histogram for BMI
-ggplot(data = weight_df, aes(x = as.numeric(CurrentBMI)), fill = as.factor(HowDoYouConsiderYourWeight)) + geom_histogram(color = 'darkblue', fill = 'white') + ggtitle("Current BMI") + xlab("Body Mass Index")
+# Current BMI Histogram
+ggplot(data = weight_df, aes(x = as.numeric(AC_CurrentBMI), )) + 
+  geom_histogram(color = 'darkblue', fill = 'white',bins = 60) + 
+  ggtitle("Current BMI") +
+  xlab("Body Mass Index") 
 
 ```
 
+-- Unsurpsingly, the BMI distribution is skewed to the right. This is because height is roughly normally distributed while weight is skewed to the right. 
+
+## Add Categorical Variable AC_BMI_Classification
+This BMI classification is pulled from the American Cancer Society
+(https://www.cancer.org/cancer/cancer-causes/diet-physical-activity/body-weight-and-cancer-risk/adult-bmi.html)
+
+- This categorical variable will be useful in splitting up the data set and coloring the plots to give more context.
+
+- The histograms for weight and height will be colored with AC_BMI_Classification
+
+```{r, warning = F, echo = T}
+# Add column to classify people's self reported weight (for graph coloring)
+weight_df$AC_BMI_Classification[as.numeric(weight_df$AC_CurrentBMI) < 18.5] <- "Underweight" 
+
+weight_df$AC_BMI_Classification[as.numeric(weight_df$AC_CurrentBMI) > 18.5 
+                         & as.numeric(weight_df$AC_CurrentBMI) < 25 ] <- "Normal Weight" 
+
+weight_df$AC_BMI_Classification[as.numeric(weight_df$AC_CurrentBMI) > 25 
+                         & as.numeric(weight_df$AC_CurrentBMI) < 30 ] <- "Overweight" 
+
+weight_df$AC_BMI_Classification[as.numeric(weight_df$AC_CurrentBMI) > 30] <- "Obese" 
+
+# Current Self Reported Weight Histogram - with BMI Classification
+ggplot(data = weight_df, aes(x = as.numeric(CurrentSelfReportedWeight_pounds))) +
+  geom_histogram(color = 'darkblue', bins = 30) + 
+  ggtitle("Current Self Reported Weight") +
+  xlab("Weight - pounds") + 
+  aes(fill = AC_BMI_Classification)
+
+# Current Self Reported Height Histogram - with BMI Classification
+ggplot(data = weight_df, aes(x = as.numeric(CurrentSelfReportedHeight_inches))) +
+  geom_histogram(color = 'darkblue', bins = 30) + 
+  ggtitle("Current Self Reported Height") + 
+  xlab("Height - inches") + 
+  aes(fill = AC_BMI_Classification) 
+```
+
+## Correlation Calculations for Height and Weight on BMI
+```{r, warning = F, echo =T}
+# Correlation Calculations
+cor(as.numeric(weight_df$CurrentSelfReportedWeight_pounds), as.numeric(weight_df$AC_CurrentBMI),
+    use = "complete.obs")
+cor(as.numeric(weight_df$CurrentSelfReportedHeight_inches), as.numeric(weight_df$AC_CurrentBMI),
+    use = "complete.obs")
+```
+
+
+- Intuitively, it makes sense that height is not correlated with BMI/BMI_Classification (-0.04305333), while weight is (0.868958). 
 
 ## Exploratory Visuals for People's Weight Mindset and Goals
+- Fill something in here
 ```{r, echo=T, warning=F}
 
 # How Do you Consider Your Weight? Bar Plot
-df_2 <- data.frame(sort(table(weight_df$HowDoYouConsiderYourWeight)))
-HowDoYouConsiderYourWeight_bp <- ggplot(data = df_2, aes(x = Var1, y = Freq)) + geom_bar(stat = "identity", color = 'blue', fill = 'white') +ggtitle("How Do you Consider Your Weight?") + xlab("")
+HowDoYouConsiderYourWeight_df <- data.frame(sort(table(weight_df$HowDoYouConsiderYourWeight)))
+
+HowDoYouConsiderYourWeight_bp <- ggplot(data = HowDoYouConsiderYourWeight_df, aes(x = Var1, y = Freq)) + 
+  geom_bar(stat = "identity", color = 'blue', fill = 'white') +
+  ggtitle("How Do You Consider Your Weight?") +
+  xlab("")
 
 # How Would You Like to Weight? Bar Plot
-df_3 <- data.frame(sort(table(weight_df$HowWouldYouLikeToWeigh)))
-HowWouldYouLikeToWeigh_bp <- ggplot(data = df_3, aes(x = Var1, y = Freq)) + geom_bar(stat = "identity", color = 'blue', fill = 'white') +ggtitle("How Would You Like to Weigh?") + xlab("")
+HowWouldYouLikeToWeigh_df <- data.frame(sort(table(weight_df$HowWouldYouLikeToWeigh)))
+
+HowWouldYouLikeToWeigh_bp <- ggplot(data = HowWouldYouLikeToWeigh_df, aes(x = Var1, y = Freq)) +
+  geom_bar(stat = "identity", color = 'blue', fill = 'white') +
+  ggtitle("How Would You Like to Weigh?") + 
+  xlab("")
 
 # Side by side comparison
 grid.arrange(HowDoYouConsiderYourWeight_bp, HowWouldYouLikeToWeigh_bp, nrow = 2)
 ```
+
+- Overall, a vast majority of people would prefer to lose weight or stay the same weight.
+
+- Still, there appears to be some cognitive dissonance: There are far more people who want to weigh less compared to how many people considered themselves overweight. This could be due to people having a biased view of what is considered healthy weight. Social media and entertainment are highly influential in influencing people to want to look skinny even though they may rationally know that such bodies are not realistic.
 
 ## Export Dataframe to csv
 ```{r}
 write_csv(weight_df, "clean_weight_df.csv")
 ```
 
-## Tableau
+- This step allows us to import the data into Tableau
+
+## BMI Histogram for Different Weight Goals (Tableau)
 ```{r Tableau, echo=FALSE, fig.cap="A caption", out.width = '100%'}
 knitr::include_graphics("/Users/jasonkim/Desktop/BMI.png")
 ```
+```{r, echo = T}
+# Use sqldf to calculate mean BMI for groups in HowWouldYouLikeToWeigh
+sqldf("select HowWouldYouLikeToWeigh,avg(AC_CurrentBMI) from weight_df group by HowWouldYouLikeToWeigh")
+
+```
+
+
+- People who would like to weigh more and those who don't know have lower median BMI than people who do not.
+- Additionally, people that want to weigh less have a much larger absolute difference to the median BMI (for people who want to stay about the same weight) compared to those who want to weigh more. 
+
+## Analysis on Methods Used to Lose Weight
+```{r, echo = T}
+# TriedToLoseWeightInPastYear: table
+sort(table(weight_df$TriedToLoseWeightInPastYear))
+
+# Percentage of people who tried to lose weight in the last year
+2116 / nrow(weight_df)
+
+# Counts what methods people used to try to lose weight
+TLW_counts_list <- lapply(weight_df[9:29],function(x) length(which(!is.na(x))))
+TLW_counts_df <- data.frame(unlist(TLW_counts_list))
+TLW_counts_df$type_of_weightloss_method <- rownames(TLW_counts_df)
+rownames(TLW_counts_df) <- NULL
+
+# Use dplyr select to reorder and rename columns
+TLW_counts_df %<>% select(type_of_weightloss_method, unlist.TLW_counts_list.) %>% 
+  rename(count = unlist.TLW_counts_list.) %>% 
+  arrange(desc(count))
+TLW_counts_df
+```
+
+- The standard recommended procedures from most health professionals are at the top of the most frequent methods used to lose weight. Other more extreme methods such as surgery, pills, smoking, and vomitting are far less common.
+
+## Calculates how many methods to lose weight were used for each respondent
+```{r, echo = T, warning = F}
+weight_df$AC_num_methods_used <- apply(weight_df[9:29], MARGIN = 1, FUN = function(x) length(which(!is.na(x))))
+
+# One year weight change
+weight_df$AC_one_year_weight_change <- as.numeric(weight_df$CurrentSelfReportedWeight_pounds) - 
+  as.numeric(weight_df$SelfReportedWeight1YearAgo) 
+
+# Ten year weight change
+weight_df$AC_ten_year_weight_change <- as.numeric(weight_df$CurrentSelfReportedWeight_pounds) - 
+  as.numeric(weight_df$SelfReportedWeight10YearsAgo) 
+
+# Plot of 1 year weight changes vs num_methods_used for weight loss 
+ggplot(data = weight_df, aes(x = AC_num_methods_used, y = AC_one_year_weight_change)) +
+  geom_point() + 
+  aes(color = AC_BMI_Classification) + 
+  facet_wrap(~AC_BMI_Classification) + 
+  geom_smooth(method='lm',formula=y~x) +
+  ggtitle("1 Year Weight Change vs Number of Methods for Used TLW")
+
+# Plot of 10 year weight changes vs num_methods_used for weight loss 
+ggplot(data = weight_df, aes(x = AC_num_methods_used, y = AC_ten_year_weight_change)) +
+  geom_point() +
+  aes(color = AC_BMI_Classification) + 
+  facet_wrap(~AC_BMI_Classification) + 
+  geom_smooth(method='lm',formula=y~x)
+
+cor(weight_df$AC_one_year_weight_change, weight_df$AC_num_methods_used, use = "complete.obs")
+
+cor(weight_df$AC_ten_year_weight_change, weight_df$AC_num_methods_used, use = "complete.obs")
+```
+
+- The number of methods used to lose weight has almost no bearing on weight loss for a one and ten year time frame. This is a testament to how difficult it is to lose weight. Furthermore, the respondents could have not stuck with any of the plans for a significant amount of time. 
+
+- There are some differences between a 1 and 10 year time frame. The shorter term has more negative correlations for weight change and number of methods used, while the longer 10 year time frame has mostly positive correlations. Perhaps the negative correlation in the long term can be attributed to a confounding variable, such as culture shifts in health and nutrition that have occured in the long term.
+
