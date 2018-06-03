@@ -1,0 +1,1049 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 10500.18.0404.1406                               -->
+<workbook original-version='10.5' source-build='10.5.3 (10500.18.0404.1406)' source-platform='mac' version='10.5' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='clean_weight_df' inline='true' name='federated.0m7oxg00qbqbfb1bbfc4l0st0iyh' version='10.5'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='clean_weight_df' name='textscan.1sz042d1pym7fp1a967rx1j17k26'>
+            <connection class='textscan' directory='/Users/jasonkim/QBS 181' filename='clean_weight_df.csv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.1sz042d1pym7fp1a967rx1j17k26' name='clean_weight_df.csv' table='[clean_weight_df#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='real' name='RespondentSequenceNumber' ordinal='0' />
+            <column datatype='integer' name='CurrentSelfReportedHeight_inches' ordinal='1' />
+            <column datatype='integer' name='CurrentSelfReportedWeight_pounds' ordinal='2' />
+            <column datatype='string' name='HowDoYouConsiderYourWeight' ordinal='3' />
+            <column datatype='string' name='HowWouldYouLikeToWeigh' ordinal='4' />
+            <column datatype='integer' name='SelfReportedWeight1YearAgo' ordinal='5' />
+            <column datatype='string' name='WeightChangeIntentional' ordinal='6' />
+            <column datatype='string' name='TriedToLoseWeightInPastYear' ordinal='7' />
+            <column datatype='string' name='AteLess_TLW' ordinal='8' />
+            <column datatype='string' name='SwitchedFoodToLowerCalories_TLW' ordinal='9' />
+            <column datatype='string' name='AteLessFat_TLW' ordinal='10' />
+            <column datatype='string' name='Exercised_TLW' ordinal='11' />
+            <column datatype='string' name='SkippedMeals_TLW' ordinal='12' />
+            <column datatype='string' name='AteDietFoodsOrProducts_TLW' ordinal='13' />
+            <column datatype='string' name='LiquidDiet_TLW' ordinal='14' />
+            <column datatype='string' name='WeightLossProgram_TLW' ordinal='15' />
+            <column datatype='string' name='PrescriptionDietPills_TLW' ordinal='16' />
+            <column datatype='string' name='NonprescriptionPills_TLW' ordinal='17' />
+            <column datatype='string' name='TookLaxativesOrVomited_TLW' ordinal='18' />
+            <column datatype='string' name='DrankLotsOfWater_TLW' ordinal='19' />
+            <column datatype='string' name='SpecialDiet_TLW' ordinal='20' />
+            <column datatype='string' name='AteFewerCarbs_TLW' ordinal='21' />
+            <column datatype='string' name='Smoked_TLW' ordinal='22' />
+            <column datatype='string' name='AteMoreFruitsVegsSalads_TLW' ordinal='23' />
+            <column datatype='string' name='ChangedEatingHabits_TLW' ordinal='24' />
+            <column datatype='string' name='AteLessSweets_TLW' ordinal='25' />
+            <column datatype='string' name='AteLessJunkfood_TLW' ordinal='26' />
+            <column datatype='string' name='HadWeightLossSurgery_TLW' ordinal='27' />
+            <column datatype='string' name='Other_TLW' ordinal='28' />
+            <column datatype='string' name='TimesLost10PoundsOrMore' ordinal='29' />
+            <column datatype='string' name='SelfReportedWeight10YearsAgo' ordinal='30' />
+            <column datatype='string' name='SelfReportedWeightAge25' ordinal='31' />
+            <column datatype='string' name='SelfReportedHeightAge25' ordinal='32' />
+            <column datatype='string' name='SelfReportedGreatestWeight' ordinal='33' />
+            <column datatype='string' name='AgeWhenHeaviest' ordinal='34' />
+            <column datatype='string' name='HaveYouEverHadWeightLossSurgery' ordinal='35' />
+            <column datatype='string' name='AgeWhenWeightLossSurgery' ordinal='36' />
+            <column datatype='real' name='CurrentBMI' ordinal='37' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>RespondentSequenceNumber</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[RespondentSequenceNumber]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>RespondentSequenceNumber</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CurrentSelfReportedHeight_inches</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[CurrentSelfReportedHeight_inches]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>CurrentSelfReportedHeight_inches</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CurrentSelfReportedWeight_pounds</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[CurrentSelfReportedWeight_pounds]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>CurrentSelfReportedWeight_pounds</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>HowDoYouConsiderYourWeight</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[HowDoYouConsiderYourWeight]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>HowDoYouConsiderYourWeight</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>HowWouldYouLikeToWeigh</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[HowWouldYouLikeToWeigh]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>HowWouldYouLikeToWeigh</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SelfReportedWeight1YearAgo</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[SelfReportedWeight1YearAgo]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>SelfReportedWeight1YearAgo</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WeightChangeIntentional</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[WeightChangeIntentional]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>WeightChangeIntentional</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TriedToLoseWeightInPastYear</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[TriedToLoseWeightInPastYear]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>TriedToLoseWeightInPastYear</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>AteLess_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[AteLess_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>AteLess_TLW</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SwitchedFoodToLowerCalories_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[SwitchedFoodToLowerCalories_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>SwitchedFoodToLowerCalories_TLW</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>AteLessFat_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[AteLessFat_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>AteLessFat_TLW</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Exercised_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Exercised_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>Exercised_TLW</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SkippedMeals_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[SkippedMeals_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>SkippedMeals_TLW</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>AteDietFoodsOrProducts_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[AteDietFoodsOrProducts_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>AteDietFoodsOrProducts_TLW</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>LiquidDiet_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[LiquidDiet_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>LiquidDiet_TLW</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WeightLossProgram_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[WeightLossProgram_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>WeightLossProgram_TLW</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>PrescriptionDietPills_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[PrescriptionDietPills_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>PrescriptionDietPills_TLW</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>NonprescriptionPills_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[NonprescriptionPills_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>NonprescriptionPills_TLW</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TookLaxativesOrVomited_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[TookLaxativesOrVomited_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>TookLaxativesOrVomited_TLW</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>DrankLotsOfWater_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[DrankLotsOfWater_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>DrankLotsOfWater_TLW</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SpecialDiet_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[SpecialDiet_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>SpecialDiet_TLW</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>AteFewerCarbs_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[AteFewerCarbs_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>AteFewerCarbs_TLW</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Smoked_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Smoked_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>Smoked_TLW</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>AteMoreFruitsVegsSalads_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[AteMoreFruitsVegsSalads_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>AteMoreFruitsVegsSalads_TLW</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ChangedEatingHabits_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[ChangedEatingHabits_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>ChangedEatingHabits_TLW</remote-alias>
+            <ordinal>24</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>AteLessSweets_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[AteLessSweets_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>AteLessSweets_TLW</remote-alias>
+            <ordinal>25</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>AteLessJunkfood_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[AteLessJunkfood_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>AteLessJunkfood_TLW</remote-alias>
+            <ordinal>26</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>HadWeightLossSurgery_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[HadWeightLossSurgery_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>HadWeightLossSurgery_TLW</remote-alias>
+            <ordinal>27</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Other_TLW</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Other_TLW]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>Other_TLW</remote-alias>
+            <ordinal>28</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TimesLost10PoundsOrMore</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[TimesLost10PoundsOrMore]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>TimesLost10PoundsOrMore</remote-alias>
+            <ordinal>29</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SelfReportedWeight10YearsAgo</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[SelfReportedWeight10YearsAgo]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>SelfReportedWeight10YearsAgo</remote-alias>
+            <ordinal>30</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SelfReportedWeightAge25</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[SelfReportedWeightAge25]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>SelfReportedWeightAge25</remote-alias>
+            <ordinal>31</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SelfReportedHeightAge25</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[SelfReportedHeightAge25]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>SelfReportedHeightAge25</remote-alias>
+            <ordinal>32</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SelfReportedGreatestWeight</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[SelfReportedGreatestWeight]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>SelfReportedGreatestWeight</remote-alias>
+            <ordinal>33</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>AgeWhenHeaviest</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[AgeWhenHeaviest]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>AgeWhenHeaviest</remote-alias>
+            <ordinal>34</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>HaveYouEverHadWeightLossSurgery</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[HaveYouEverHadWeightLossSurgery]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>HaveYouEverHadWeightLossSurgery</remote-alias>
+            <ordinal>35</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>AgeWhenWeightLossSurgery</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[AgeWhenWeightLossSurgery]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>AgeWhenWeightLossSurgery</remote-alias>
+            <ordinal>36</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CurrentBMI</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[CurrentBMI]</local-name>
+            <parent-name>[clean_weight_df.csv]</parent-name>
+            <remote-alias>CurrentBMI</remote-alias>
+            <ordinal>37</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Age When Heaviest' datatype='string' name='[AgeWhenHeaviest]' role='dimension' type='nominal' />
+      <column caption='Age When Weight Loss Surgery' datatype='string' name='[AgeWhenWeightLossSurgery]' role='dimension' type='nominal' />
+      <column caption='AteDietFoodsOrProducts TLW' datatype='string' name='[AteDietFoodsOrProducts_TLW]' role='dimension' type='nominal' />
+      <column caption='AteFewerCarbs TLW' datatype='string' name='[AteFewerCarbs_TLW]' role='dimension' type='nominal' />
+      <column caption='AteLessFat TLW' datatype='string' name='[AteLessFat_TLW]' role='dimension' type='nominal' />
+      <column caption='AteLessJunkfood TLW' datatype='string' name='[AteLessJunkfood_TLW]' role='dimension' type='nominal' />
+      <column caption='AteLessSweets TLW' datatype='string' name='[AteLessSweets_TLW]' role='dimension' type='nominal' />
+      <column caption='AteLess TLW' datatype='string' name='[AteLess_TLW]' role='dimension' type='nominal' />
+      <column caption='AteMoreFruitsVegsSalads TLW' datatype='string' name='[AteMoreFruitsVegsSalads_TLW]' role='dimension' type='nominal' />
+      <column caption='ChangedEatingHabits TLW' datatype='string' name='[ChangedEatingHabits_TLW]' role='dimension' type='nominal' />
+      <column aggregation='Sum' caption='Current BMI' datatype='real' name='[CurrentBMI]' role='dimension' type='ordinal' />
+      <column caption='CurrentSelfReportedHeight inches' datatype='integer' name='[CurrentSelfReportedHeight_inches]' role='measure' type='quantitative' />
+      <column caption='CurrentSelfReportedWeight pounds' datatype='integer' name='[CurrentSelfReportedWeight_pounds]' role='measure' type='quantitative' />
+      <column caption='DrankLotsOfWater TLW' datatype='string' name='[DrankLotsOfWater_TLW]' role='dimension' type='nominal' />
+      <column caption='Exercised TLW' datatype='string' name='[Exercised_TLW]' role='dimension' type='nominal' />
+      <column caption='HadWeightLossSurgery TLW' datatype='string' name='[HadWeightLossSurgery_TLW]' role='dimension' type='nominal' />
+      <column caption='Have You Ever Had Weight Loss Surgery' datatype='string' name='[HaveYouEverHadWeightLossSurgery]' role='dimension' type='nominal' />
+      <column caption='How Do You Consider Your Weight' datatype='string' name='[HowDoYouConsiderYourWeight]' role='dimension' type='nominal' />
+      <column caption='How Would You Like To Weigh' datatype='string' name='[HowWouldYouLikeToWeigh]' role='dimension' type='nominal' />
+      <column caption='LiquidDiet TLW' datatype='string' name='[LiquidDiet_TLW]' role='dimension' type='nominal' />
+      <column caption='NonprescriptionPills TLW' datatype='string' name='[NonprescriptionPills_TLW]' role='dimension' type='nominal' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column caption='Other TLW' datatype='string' name='[Other_TLW]' role='dimension' type='nominal' />
+      <column caption='PrescriptionDietPills TLW' datatype='string' name='[PrescriptionDietPills_TLW]' role='dimension' type='nominal' />
+      <column caption='Respondent Sequence Number' datatype='real' name='[RespondentSequenceNumber]' role='dimension' type='ordinal' />
+      <column caption='Self Reported Greatest Weight' datatype='string' name='[SelfReportedGreatestWeight]' role='dimension' type='nominal' />
+      <column caption='SkippedMeals TLW' datatype='string' name='[SkippedMeals_TLW]' role='dimension' type='nominal' />
+      <column caption='Smoked TLW' datatype='string' name='[Smoked_TLW]' role='dimension' type='nominal' />
+      <column caption='SpecialDiet TLW' datatype='string' name='[SpecialDiet_TLW]' role='dimension' type='nominal' />
+      <column caption='SwitchedFoodToLowerCalories TLW' datatype='string' name='[SwitchedFoodToLowerCalories_TLW]' role='dimension' type='nominal' />
+      <column caption='TookLaxativesOrVomited TLW' datatype='string' name='[TookLaxativesOrVomited_TLW]' role='dimension' type='nominal' />
+      <column caption='Tried To Lose Weight In Past Year' datatype='string' name='[TriedToLoseWeightInPastYear]' role='dimension' type='nominal' />
+      <column caption='Weight Change Intentional' datatype='string' name='[WeightChangeIntentional]' role='dimension' type='nominal' />
+      <column caption='WeightLossProgram TLW' datatype='string' name='[WeightLossProgram_TLW]' role='dimension' type='nominal' />
+      <column-instance column='[HowWouldYouLikeToWeigh]' derivation='None' name='[none:HowWouldYouLikeToWeigh:nk]' pivot='key' type='nominal' />
+      <layout dim-ordering='alphabetic' dim-percentage='0.809437' measure-ordering='alphabetic' measure-percentage='0.190563' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:HowWouldYouLikeToWeigh:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;Don&apos;t Know&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Stay About the Same&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Refused&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;More&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Less&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>BMI for People&apos;s Weight Goals</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='clean_weight_df' name='federated.0m7oxg00qbqbfb1bbfc4l0st0iyh' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0m7oxg00qbqbfb1bbfc4l0st0iyh'>
+            <column aggregation='Sum' caption='Current BMI' datatype='real' name='[CurrentBMI]' role='dimension' type='ordinal' />
+            <column caption='How Would You Like To Weigh' datatype='string' name='[HowWouldYouLikeToWeigh]' role='dimension' type='nominal' />
+            <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+              <calculation class='tableau' formula='1' />
+            </column>
+            <column-instance column='[CurrentBMI]' derivation='None' name='[none:CurrentBMI:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[HowWouldYouLikeToWeigh]' derivation='None' name='[none:HowWouldYouLikeToWeigh:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Number of Records]' derivation='Sum' name='[sum:Number of Records:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='quantitative' column='[federated.0m7oxg00qbqbfb1bbfc4l0st0iyh].[none:CurrentBMI:qk]' included-values='non-null' />
+          <filter class='categorical' column='[federated.0m7oxg00qbqbfb1bbfc4l0st0iyh].[none:HowWouldYouLikeToWeigh:nk]'>
+            <groupfilter function='except' user:ui-domain='relevant' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[none:HowWouldYouLikeToWeigh:nk]' />
+              <groupfilter function='member' level='[none:HowWouldYouLikeToWeigh:nk]' member='&quot;Don&apos;t Know&quot;' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.0m7oxg00qbqbfb1bbfc4l0st0iyh].[none:CurrentBMI:qk]</column>
+            <column>[federated.0m7oxg00qbqbfb1bbfc4l0st0iyh].[none:HowWouldYouLikeToWeigh:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane id='6' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[federated.0m7oxg00qbqbfb1bbfc4l0st0iyh].[none:HowWouldYouLikeToWeigh:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0m7oxg00qbqbfb1bbfc4l0st0iyh].[sum:Number of Records:qk]</rows>
+        <cols>([federated.0m7oxg00qbqbfb1bbfc4l0st0iyh].[none:HowWouldYouLikeToWeigh:nk] * [federated.0m7oxg00qbqbfb1bbfc4l0st0iyh].[none:CurrentBMI:qk])</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows source-height='30'>
+    <window class='worksheet' maximized='true' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='6' param='[federated.0m7oxg00qbqbfb1bbfc4l0st0iyh].[none:HowWouldYouLikeToWeigh:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0m7oxg00qbqbfb1bbfc4l0st0iyh].[none:CurrentBMI:ok]</field>
+            <field>[federated.0m7oxg00qbqbfb1bbfc4l0st0iyh].[none:CurrentBMI:qk]</field>
+            <field>[federated.0m7oxg00qbqbfb1bbfc4l0st0iyh].[none:HowWouldYouLikeToWeigh:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='384' name='Sheet 1' width='384'>
+      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
+      BYCIiE39f58vE+ThK88+AAAAAElFTkSuQmCC
+    </thumbnail>
+  </thumbnails>
+</workbook>
